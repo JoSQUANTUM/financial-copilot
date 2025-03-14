@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "location": {
+      "value": "${AZURE_LOCATION}"
+    },
+    "principalId": {
+      "value": "${AZURE_PRINCIPAL_ID}"
+    },
+    "ipAddress": {
+      "value": "${IP_ADDRESS}"
+    },
+    "resourceGroupName": {
+      "value": "${AZURE_RG_NAME}"
+    },
+    "gptModel": {
+      "value": "${AZURE_GPT_MODEL}"
+    },
+    "gptVersion": {
+      "value": "${AZURE_GPT_VERSION}"
+    },
+    "sqlServerName": {
+      "value": "${AZURE_SQL_SERVER_NAME}"
+    },
+    "sqlDatabaseName": {
+      "value": "${AZURE_SQL_DATABASE_NAME}"
+    },
+    "tags": {
+      "value": {
+        "Owner": "",
+        "Project": "SQL_AI",
+        "Environment": "Dev",
+        "Toolkit": "Bicep"
+      }
+    }
+  }
+}

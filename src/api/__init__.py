@@ -1,0 +1,1 @@
+from .service import serve_app

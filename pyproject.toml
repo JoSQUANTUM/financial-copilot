@@ -1,0 +1,25 @@
+[project]
+name = "nlp-sql-in-a-box"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.10.16"
+dependencies = [
+  "asyncio==3.4.3",
+  "azure-cognitiveservices-speech==1.38.0",
+  "azure-identity==1.17.1",
+  "azure-ai-projects",
+  "httpx==0.27.2",
+  "azure-search-documents==11.6.0b9",
+  "faker==26.0.0",
+  "openai==1.37.1",
+  "pyodbc==5.1.0",
+  "python-dotenv==1.0.1",
+  "semantic-kernel[azure]==1.20.0",
+  "uvicorn>=0.34.0",
+  "fastapi>=0.115.8",
+  "pdf2image==1.17.0",
+  "pillow",
+  "pytest",
+  "pytest-asyncio",
+]
