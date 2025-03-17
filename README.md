@@ -21,7 +21,7 @@ This solution is a **financial AI assistant** that helps users analyze and retri
 
 ### 🔹 How It Works
 
-1. **User Query:** The user asks a question in natural language (e.g., _"How many locations are there?"_).
+1. **User Query:** The user asks a question in natural language (e.g. _"How many locations are there?"_).
 2. **Semantic Kernel Routing:** The system calls the adequate plugin regarding the user query.
 3. **Plugin Calling:**
 
