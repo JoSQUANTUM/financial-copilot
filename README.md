@@ -31,6 +31,52 @@ This solution is a **financial AI assistant** that helps users analyze and retri
 
 4. **Response Generation:** The system formats the result and **returns a human-readable answer**.
 
+## Setup Instructions
+
+### Service Setup
+
+#### 1. **AI Azure Foundry - Create and Deploy a Model**
+
+1. Go to **Azure AI Studio (Azure Foundry)**:
+   [https://ai.azure.com](https://ai.azure.com)
+
+2. **Create a Project**:
+
+   - Navigate to **Projects** → **+ New Project**.
+   - Select a **Region**. We recommend you use either **East US2** or **Sweden Central**.
+   - Name your project.
+
+3. **Deploy a Model**:
+   - Select **Model catalog**.
+   - Choose a model, for example: **gpt-4o-mini**.
+
+#### 2. **Vector Database for RAG - Azure AI Search Index**
+
+1. Go to the **Azure Portal**:
+   [https://portal.azure.com](https://portal.azure.com)
+
+2. **Create Azure AI Search service**:
+
+   - Search **Azure AI Search service**.
+   - Select your resource group and instance details.
+
+3. **Create Index**:
+   - After the service is created, select **Add index** to create a search index.
+   - Add any necessary fields.
+
+#### 4. **SQL Database - Microsoft Azure**
+
+1. Go to the **Azure Portal**:
+   [https://portal.azure.com](https://portal.azure.com)
+
+2. **Create SQL Database**:
+
+   - In Azure Portal, search for **SQL Databases** → **+ Create**.
+   - Fill:
+     - **Database Name**: e.g., `josserver`
+     - **Resource group**: Same as your other Azure resources.
+     - **Region**: Same as your other Azure resources.
+
 ### Create the environment
 
 Download and install `uv` and then install dependencies from `pyproject.toml`.
@@ -64,7 +110,7 @@ pwd = "" # password for database access
 DEPLOYMENT_NAME = "gpt-4o-mini" # LLM deployment name (the deployment name is an example)
 
 AIPROJECT_CONNECTION_STRING=""
-AISEARCH_INDEX_NAME="rag-search-kid" - # vector databae index name 
+AISEARCH_INDEX_NAME="rag-search-kid" - # vector databae index name
 EMBEDDINGS_MODEL="text-embedding-ada-002" # embedding model name
 ```
 
