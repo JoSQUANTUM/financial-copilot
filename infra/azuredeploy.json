@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.28.1.47646",
-      "templateHash": "4015609571791161378"
+      "version": "0.33.93.31351",
+      "templateHash": "17953194691810207256"
     }
   },
   "parameters": {
@@ -90,7 +90,6 @@
       "cognitiveServicesBing": "cog-bg",
       "cognitiveServicesOpenAI": "cog-oa-",
       "cognitiveServicesFormRecognizer": "cog-fr-",
-      "cognitiveServicesSpeech": "cog-sp-",
       "cognitiveServicesTextAnalytics": "cog-ta-",
       "cognitiveServicesBot": "cog-bot-",
       "computeAvailabilitySets": "avail-",
@@ -222,7 +221,6 @@
     "names": {
       "resourceGroupName": "[if(not(empty(parameters('resourceGroupName'))), parameters('resourceGroupName'), format('{0}{1}', variables('abbrs').resourcesResourceGroups, parameters('environmentName')))]",
       "openaiName": "[if(not(empty(parameters('openaiName'))), parameters('openaiName'), format('{0}{1}-{2}', variables('abbrs').cognitiveServicesOpenAI, parameters('environmentName'), variables('uniqueSuffix')))]",
-      "speechServiceName": "[if(not(empty(parameters('speechServiceName'))), parameters('speechServiceName'), format('{0}{1}-{2}', variables('abbrs').cognitiveServicesSpeech, parameters('environmentName'), variables('uniqueSuffix')))]",
       "sqlServerName": "[if(not(empty(parameters('sqlServerName'))), parameters('sqlServerName'), format('{0}{1}-{2}', variables('abbrs').sqlServers, parameters('environmentName'), variables('uniqueSuffix')))]",
       "sqlDatabaseName": "[if(not(empty(parameters('sqlDatabaseName'))), parameters('sqlDatabaseName'), format('{0}{1}-{2}', variables('abbrs').sqlServersDatabases, parameters('environmentName'), variables('uniqueSuffix')))]"
     }
@@ -268,8 +266,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.28.1.47646",
-              "templateHash": "8688028833357356624"
+              "version": "0.33.93.31351",
+              "templateHash": "16480655872496997754"
             }
           },
           "parameters": {
@@ -364,107 +362,6 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
-      "name": "deploy_speech",
-      "resourceGroup": "[variables('names').resourceGroupName]",
-      "properties": {
-        "expressionEvaluationOptions": {
-          "scope": "inner"
-        },
-        "mode": "Incremental",
-        "parameters": {
-          "location": {
-            "value": "[variables('location')]"
-          },
-          "principalId": {
-            "value": "[parameters('principalId')]"
-          },
-          "ipAddress": {
-            "value": "[parameters('ipAddress')]"
-          },
-          "speechServiceName": {
-            "value": "[variables('names').speechServiceName]"
-          },
-          "tags": {
-            "value": "[parameters('tags')]"
-          }
-        },
-        "template": {
-          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-          "contentVersion": "1.0.0.0",
-          "metadata": {
-            "_generator": {
-              "name": "bicep",
-              "version": "0.28.1.47646",
-              "templateHash": "1243482995404149893"
-            }
-          },
-          "parameters": {
-            "location": {
-              "type": "string"
-            },
-            "speechServiceName": {
-              "type": "string"
-            },
-            "principalId": {
-              "type": "string"
-            },
-            "ipAddress": {
-              "type": "string"
-            },
-            "tags": {
-              "type": "object",
-              "defaultValue": {}
-            }
-          },
-          "resources": [
-            {
-              "type": "Microsoft.CognitiveServices/accounts",
-              "apiVersion": "2022-03-01",
-              "name": "[parameters('speechServiceName')]",
-              "location": "[parameters('location')]",
-              "kind": "SpeechServices",
-              "sku": {
-                "name": "S0",
-                "tier": "Standard"
-              },
-              "properties": {
-                "customSubDomainName": "[parameters('speechServiceName')]",
-                "disableLocalAuth": true,
-                "publicNetworkAccess": "[if(not(equals(parameters('ipAddress'), '')), 'Enabled', 'Disabled')]",
-                "networkAcls": "[if(not(equals(parameters('ipAddress'), '')), createObject('defaultAction', 'Deny', 'ipRules', createArray(createObject('value', parameters('ipAddress')))), null())]"
-              },
-              "tags": "[parameters('tags')]"
-            },
-            {
-              "type": "Microsoft.Authorization/roleAssignments",
-              "apiVersion": "2022-04-01",
-              "name": "[guid(parameters('principalId'), resourceId('Microsoft.CognitiveServices/accounts', parameters('speechServiceName')), resourceId('Microsoft.Authorization/roleDefinitions', 'f2dc8367-1007-4938-bd23-fe263f013447'))]",
-              "properties": {
-                "description": "User role assignment for Speech Service",
-                "principalId": "[parameters('principalId')]",
-                "principalType": "User",
-                "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', 'f2dc8367-1007-4938-bd23-fe263f013447')]"
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.CognitiveServices/accounts', parameters('speechServiceName'))]"
-              ]
-            }
-          ],
-          "outputs": {
-            "id": {
-              "type": "string",
-              "value": "[resourceId('Microsoft.CognitiveServices/accounts', parameters('speechServiceName'))]"
-            }
-          }
-        }
-      },
-      "dependsOn": [
-        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', variables('names').resourceGroupName)]"
-      ]
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2022-09-01",
       "name": "deploy_sql",
       "resourceGroup": "[variables('names').resourceGroupName]",
       "properties": {
@@ -501,8 +398,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.28.1.47646",
-              "templateHash": "12306994777557947896"
+              "version": "0.33.93.31351",
+              "templateHash": "10844434098762616748"
             }
           },
           "parameters": {
@@ -599,10 +496,6 @@
     "SQL_DATABASE_NAME": {
       "type": "string",
       "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, variables('names').resourceGroupName), 'Microsoft.Resources/deployments', 'deploy_sql'), '2022-09-01').outputs.databaseName.value]"
-    },
-    "SPEECH_SERVICE_ID": {
-      "type": "string",
-      "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, variables('names').resourceGroupName), 'Microsoft.Resources/deployments', 'deploy_speech'), '2022-09-01').outputs.id.value]"
     },
     "AZURE_OPENAI_CHAT_DEPLOYMENT_NAME": {
       "type": "string",

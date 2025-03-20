@@ -28,10 +28,6 @@ param administratorLogin string
 @description('IP address to allow for SQL Server connection')
 param ipAddress string = ''
 
-//Speech Module Parameters
-@description('Speech service resource name')
-param speechServiceName string = ''
-
 var location = deployment().location
 var abbrs = loadJsonContent('abbreviations.json')
 var uniqueSuffix = substring(uniqueString(subscription().id, environmentName), 1, 5)
@@ -39,7 +35,6 @@ var uniqueSuffix = substring(uniqueString(subscription().id, environmentName), 1
 var names = {
     resourceGroupName: !empty(resourceGroupName) ? resourceGroupName : '${abbrs.resourcesResourceGroups}${environmentName}'
     openaiName: !empty(openaiName) ? openaiName : '${abbrs.cognitiveServicesOpenAI}${environmentName}-${uniqueSuffix}'
-    speechServiceName: !empty(speechServiceName) ? speechServiceName : '${abbrs.cognitiveServicesSpeech}${environmentName}-${uniqueSuffix}'
     sqlServerName: !empty(sqlServerName) ? sqlServerName : '${abbrs.sqlServers}${environmentName}-${uniqueSuffix}'
     sqlDatabaseName: !empty(sqlDatabaseName) ? sqlDatabaseName : '${abbrs.sqlServersDatabases}${environmentName}-${uniqueSuffix}'
 }
