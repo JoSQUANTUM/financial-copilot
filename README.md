@@ -159,7 +159,7 @@ We suggest using [Open-WebUI](https://github.com/open-webui/open-webui).
 
 ### UI Deploy (in development)
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Ffinancial-copilot%2Fnlp-sql-in-a-box%2Fuideploy_hb%2Finfra%2Fazuredeploy.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FJoSQUANTUM%2Ffinancial-copilot%2Fuideploy_hb%2Finfra%2Fazuredeploy.json)
 
 ### Example Usage
 
