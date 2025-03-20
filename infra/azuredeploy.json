@@ -70,13 +70,6 @@
       "metadata": {
         "description": "IP address to allow for SQL Server connection"
       }
-    },
-    "speechServiceName": {
-      "type": "string",
-      "defaultValue": "",
-      "metadata": {
-        "description": "Speech service resource name"
-      }
     }
   },
   "variables": {
