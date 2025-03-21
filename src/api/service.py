@@ -90,7 +90,7 @@ def serve_app(kernel_setup: Callable, chat_setup: Callable):
 
     @app.get("/favicon.ico")
     async def favicon():
-        return FileResponse("static/JoSlogo.ico")
+        return FileResponse("src/api/static/JoSlogo.ico")
 
     async def stream_response(user_message: str, model: str, chat_history: ChatHistory):
         def get_chunk(content: str, stop: bool = False):
