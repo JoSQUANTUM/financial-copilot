@@ -1,0 +1,57 @@
+---
+name: Text extraction
+description: Extract text  and entities from an image
+model:
+    api: chat
+    configuration:
+        azure_deployment: gpt-4o-mini
+inputs:
+    conversation:
+        type: array
+---
+system:
+
+Extract the text data and the entities in this image of a PDF page.
+Return output in a JSON format.
+
+- Step 1 : text extraction
+
+Extract the text data in this image of a PDF page in a Markdown format. 
+Extract only the text without saying anything else or giving any further explanation. 
+Be exhaustive, extract all the text information.
+Do not introduce the output with something like “Here is the extracted text” or similar, but reply directly.
+Mark “blocks” and separate each block with a “{{separator}}” separator. A block is a part of the text that should not be split for better understanding (paragraph, table...).
+Add the extracted text in the "content" key of the output.
+
+Images :
+Extract the text of the image without describing it. 
+If there is no text data, do not return anything. If there is a graph, try to read the values of the graph (e.g. bar values) using the axes and link them to the legend.
+
+Tables :
+IMPORTANT: Convert tables into a Markdown format. 
+Insert the title of the text. Keep the structure of the table with headings and try to assign each cell to the correct row or column, even if the rows of the table are implicit and are not displayed directly.
+
+- Step 2 : entity extraction
+
+Given a list of entity types, identify all entities of those types from the text.
+Return output in a JSON dict format with each key being an entity type.
+For each entity not found, return an empty string "".
+
+Entity types :
+
+- product_name : Name of the ETF described in the document.
+Example : "Deka Deutsche Börse EUROGOV® Germany UCITS ETF"
+
+- manufacturer : Name of the manufacturer of the ETF described in the document.
+Example : "Deka Investment GmbH"
+
+- risk_class : Risk class or risk level of the ETF described in the document, which is a integer number between 1 and 7.
+Example : "2"
+
+- Output format:
+{
+    "content": <extracted text>,
+    "product_name": <product_name>,
+    "manufacturer": <manufacturer>,
+    "risk_class": <risk_class>,
+}
