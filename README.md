@@ -157,9 +157,6 @@ INFO:     127.0.0.1:40980 - "GET / HTTP/1.1" 200 OK
 
 We suggest using [Open-WebUI](https://github.com/open-webui/open-webui).
 
-### UI Deploy (in development)
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fnlp-sql-in-a-box%2Fmain%2Finfra%2Fazuredeploy.json)
 
 ### Example Usage
 
